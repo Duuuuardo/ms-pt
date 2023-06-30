@@ -2,7 +2,7 @@
   "name": "ms-pt",
   "version": "1.0.0",
   "description": "Tiny millisecond conversion utility",
-  "repository": "vercel/ms",
+  "repository": "duuuuardo/ms",
   "main": "./dist/index.cjs",
   "type": "module",
   "exports": {
