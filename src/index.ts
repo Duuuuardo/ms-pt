@@ -7,36 +7,30 @@ const w = d * 7;
 const y = d * 365.25;
 
 type Unit =
-  | 'Years'
-  | 'Year'
-  | 'Yrs'
-  | 'Yr'
-  | 'Y'
-  | 'Weeks'
-  | 'Week'
-  | 'W'
-  | 'Days'
-  | 'Day'
+  | 'Anos'
+  | 'Ano'
+  | 'A'
+  | 'Semanas'
+  | 'Semana'
+  | 'Sem'
+  | 'Dias'
+  | 'Dia'
   | 'D'
-  | 'Hours'
-  | 'Hour'
+  | 'Horas'
+  | 'Hora'
   | 'Hrs'
   | 'Hr'
   | 'H'
-  | 'Minutes'
-  | 'Minute'
+  | 'Minutos'
+  | 'Minuto'
   | 'Mins'
   | 'Min'
-  | 'M'
-  | 'Seconds'
-  | 'Second'
-  | 'Secs'
-  | 'Sec'
+  | 'Segundos'
+  | 'Segundo'
+  | 'Seg'
   | 's'
-  | 'Milliseconds'
-  | 'Millisecond'
-  | 'Msecs'
-  | 'Msec'
+  | 'Milisegundos'
+  | 'Milisegundo'
   | 'Ms';
 
 type UnitAnyCase = Unit | Uppercase<Unit> | Lowercase<Unit>;
@@ -102,42 +96,36 @@ function parse(str: string): number {
   const n = parseFloat(groups.value);
   const type = (groups.type || 'ms').toLowerCase() as Lowercase<Unit>;
   switch (type) {
-    case 'years':
-    case 'year':
-    case 'yrs':
-    case 'yr':
-    case 'y':
+    case 'anos':
+    case 'ano':
+    case 'a':
       return n * y;
-    case 'weeks':
-    case 'week':
-    case 'w':
+    case 'semanas':
+    case 'semana':
+    case 'sem':
       return n * w;
-    case 'days':
-    case 'day':
+    case 'dias':
+    case 'dia':
     case 'd':
       return n * d;
-    case 'hours':
-    case 'hour':
+    case 'horas':
+    case 'hora':
     case 'hrs':
     case 'hr':
     case 'h':
       return n * h;
-    case 'minutes':
-    case 'minute':
+    case 'minutos':
+    case 'minuto':
     case 'mins':
     case 'min':
-    case 'm':
       return n * m;
-    case 'seconds':
-    case 'second':
-    case 'secs':
-    case 'sec':
+    case 'segundos':
+    case 'segundo':
+    case 'seg':
     case 's':
       return n * s;
-    case 'milliseconds':
-    case 'millisecond':
-    case 'msecs':
-    case 'msec':
+    case 'milisegundos':
+    case 'milisegundo':
     case 'ms':
       return n;
     default:
@@ -177,16 +165,16 @@ function fmtShort(ms: number): StringValue {
 function fmtLong(ms: number): StringValue {
   const msAbs = Math.abs(ms);
   if (msAbs >= d) {
-    return plural(ms, msAbs, d, 'day');
+    return plural(ms, msAbs, d, 'dia');
   }
   if (msAbs >= h) {
-    return plural(ms, msAbs, h, 'hour');
+    return plural(ms, msAbs, h, 'hora');
   }
   if (msAbs >= m) {
-    return plural(ms, msAbs, m, 'minute');
+    return plural(ms, msAbs, m, 'minuto');
   }
   if (msAbs >= s) {
-    return plural(ms, msAbs, s, 'second');
+    return plural(ms, msAbs, s, 'segundo');
   }
   return `${ms} ms`;
 }
